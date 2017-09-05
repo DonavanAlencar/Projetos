@@ -1,0 +1,13 @@
+OK - Popular o JavaScript com a Api
+
+Ok - Atribuir a injeção de dependência conforme o padrão do DDD
+
+- Gerar o banco de dados (Utilizando o Migrations)
+
+- Atribuir os testes unitários
+
+- Criar o método POST que gera o Log
+
+- Criar o método de consumo.
+
+- Atribuir log no TXT (Simples)

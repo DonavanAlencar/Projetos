@@ -1,0 +1,88 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TorredeHanoi.Presentation", "TorredeHanoi.Presentation\TorredeHanoi.Presentation.csproj", "{B78EB036-558E-44B3-A47B-B57BE12AA106}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Distributed Services", "1. Distributed Services", "{F8ED0941-70FB-4276-82FE-FEAABA68ACF1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Application", "2. Application", "{EC4907B5-633D-4166-A734-5F61F5191F4F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TorredeHanoi.Models", "TorredeHanoi.Models\TorredeHanoi.Models.csproj", "{2D1962CB-F4D7-4F7A-97AD-BA2AAFC89ED3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TorredeHanoi.Application", "TorredeHanoi.Application\TorredeHanoi.Application.csproj", "{01B9018C-B0C8-4A57-BB74-D978EC06EDF9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TorredeHanoi.Service", "TorredeHanoi.Service\TorredeHanoi.Service.csproj", "{4C4D0D43-C099-4179-8F86-E531AA366434}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Domain", "3. Domain", "{94AF46CF-67B5-4BB4-8790-21FA69D84CA1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TorredeHanoi.Domain", "TorredeHanoi.Domain\TorredeHanoi.Domain.csproj", "{E77F6D28-84C5-475F-AD15-9C08C430285F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Infrastructure", "4. Infrastructure", "{08DEB8DB-4836-43BD-93CC-8A7278530B1F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.1 CrossCutting", "4.1 CrossCutting", "{6523B09A-9290-4C04-A594-4F1AFA807FCC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.2 Data", "4.2 Data", "{4FF76DA0-3543-4A35-ABC3-519051FE1C34}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TorredeHanoi.CrossCutting.IoC", "TorredeHanoi.CrossCutting.IoC\TorredeHanoi.CrossCutting.IoC.csproj", "{EE3BD5AF-A51F-44A5-9862-C13DD2A8A071}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TorredeHanoi.Infra.Data", "TorredeHanoi.Infra.Data\TorredeHanoi.Infra.Data.csproj", "{253A00D5-BE4C-468C-9230-110A14CF1DA9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2F339431-C187-4A2B-AE0D-4435140D92E0}"
+	ProjectSection(SolutionItems) = preProject
+		Atividades.txt = Atividades.txt
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B78EB036-558E-44B3-A47B-B57BE12AA106}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B78EB036-558E-44B3-A47B-B57BE12AA106}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B78EB036-558E-44B3-A47B-B57BE12AA106}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B78EB036-558E-44B3-A47B-B57BE12AA106}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D1962CB-F4D7-4F7A-97AD-BA2AAFC89ED3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D1962CB-F4D7-4F7A-97AD-BA2AAFC89ED3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D1962CB-F4D7-4F7A-97AD-BA2AAFC89ED3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D1962CB-F4D7-4F7A-97AD-BA2AAFC89ED3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01B9018C-B0C8-4A57-BB74-D978EC06EDF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01B9018C-B0C8-4A57-BB74-D978EC06EDF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01B9018C-B0C8-4A57-BB74-D978EC06EDF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01B9018C-B0C8-4A57-BB74-D978EC06EDF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C4D0D43-C099-4179-8F86-E531AA366434}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C4D0D43-C099-4179-8F86-E531AA366434}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C4D0D43-C099-4179-8F86-E531AA366434}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C4D0D43-C099-4179-8F86-E531AA366434}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E77F6D28-84C5-475F-AD15-9C08C430285F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E77F6D28-84C5-475F-AD15-9C08C430285F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E77F6D28-84C5-475F-AD15-9C08C430285F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E77F6D28-84C5-475F-AD15-9C08C430285F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE3BD5AF-A51F-44A5-9862-C13DD2A8A071}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE3BD5AF-A51F-44A5-9862-C13DD2A8A071}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE3BD5AF-A51F-44A5-9862-C13DD2A8A071}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE3BD5AF-A51F-44A5-9862-C13DD2A8A071}.Release|Any CPU.Build.0 = Release|Any CPU
+		{253A00D5-BE4C-468C-9230-110A14CF1DA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{253A00D5-BE4C-468C-9230-110A14CF1DA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{253A00D5-BE4C-468C-9230-110A14CF1DA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{253A00D5-BE4C-468C-9230-110A14CF1DA9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2D1962CB-F4D7-4F7A-97AD-BA2AAFC89ED3} = {EC4907B5-633D-4166-A734-5F61F5191F4F}
+		{01B9018C-B0C8-4A57-BB74-D978EC06EDF9} = {EC4907B5-633D-4166-A734-5F61F5191F4F}
+		{4C4D0D43-C099-4179-8F86-E531AA366434} = {F8ED0941-70FB-4276-82FE-FEAABA68ACF1}
+		{E77F6D28-84C5-475F-AD15-9C08C430285F} = {94AF46CF-67B5-4BB4-8790-21FA69D84CA1}
+		{6523B09A-9290-4C04-A594-4F1AFA807FCC} = {08DEB8DB-4836-43BD-93CC-8A7278530B1F}
+		{4FF76DA0-3543-4A35-ABC3-519051FE1C34} = {08DEB8DB-4836-43BD-93CC-8A7278530B1F}
+		{EE3BD5AF-A51F-44A5-9862-C13DD2A8A071} = {6523B09A-9290-4C04-A594-4F1AFA807FCC}
+		{253A00D5-BE4C-468C-9230-110A14CF1DA9} = {4FF76DA0-3543-4A35-ABC3-519051FE1C34}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E2036552-7CF6-4DF2-9CB4-03BFD15EF7DD}
+	EndGlobalSection
+EndGlobal

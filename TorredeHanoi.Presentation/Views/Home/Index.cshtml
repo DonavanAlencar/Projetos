@@ -1,0 +1,222 @@
+﻿@{
+    ViewData["Title"] = "Torre de Hanoi";
+}
+
+<div class="row">
+
+    <script type="text/javascript">
+        var quantidadeGraficos = 3;
+        var objetoPrincipal = [];
+
+        function InicializarVariaveisJs() {
+            for (var i = 0; i < quantidadeGraficos; i++) {
+                objetoPrincipal[i] = {};
+                objetoPrincipal[i].indexador = 0;
+                objetoPrincipal[i].myTimer = null;
+                objetoPrincipal[i].moveInfo;
+                objetoPrincipal[i].moveInc = 1;
+                objetoPrincipal[i].speed;
+                objetoPrincipal[i].callStack;
+                objetoPrincipal[i].barsInfo = [{}, {}, {}, {}, {}];
+
+                objetoPrincipal[i].diskPosTop;
+                objetoPrincipal[i].diskPosLeft;
+                objetoPrincipal[i].DiskID;
+            }
+        }
+
+        window.onload = function () {
+            InicializarVariaveisJs();
+            for (var i = 0; i < quantidadeGraficos; i++) {
+                objetoPrincipal[i].diskPosTop = new Array();
+                objetoPrincipal[i].diskPosLeft = new Array();
+                objetoPrincipal[i].DiskID = [disk0, disk1, disk2, disk3, disk4]
+
+                for (var j = 0; j < 5; j++) {
+                    objetoPrincipal[i].diskPosTop[j] = objetoPrincipal[i].DiskID[j].style.top;
+                    objetoPrincipal[i].diskPosLeft[j] = objetoPrincipal[i].DiskID[j].style.left;
+                }
+            }
+        }
+
+        function GetMovePoles(indexador) {
+            var url = "";
+            url += "http://localhost:65465/api/TorreOperations";
+            url += "?id=" + objetoPrincipal[indexador].diskCount;
+
+            $.ajax({
+                type: "get",
+                url: url,
+                success: function (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        objetoPrincipal[indexador].callStack.push([data[i].fromPole.number, data[i].toPole.number]);
+                    }
+
+                    moveDisk(indexador); //Move os discos
+                },
+                error: function (data, x, y) {
+                    alert(data.statusText);
+                }
+            });
+        }
+
+        function executeHanoi(indexador) {
+            objetoPrincipal[indexador].speed = parseInt(speedSelectList.options[speedSelectList.selectedIndex].value);
+            objetoPrincipal[indexador].diskCount = parseInt(diskSelectList.options[diskSelectList.selectedIndex].value);
+
+            //Move o disco para a coluna inicial
+            for (var i = 0; i < 5; i++) {
+                objetoPrincipal[indexador].DiskID[i].style.top = objetoPrincipal[indexador].diskPosTop[i];
+                objetoPrincipal[indexador].DiskID[i].style.left = objetoPrincipal[indexador].diskPosLeft[i];
+            }
+
+            objetoPrincipal[indexador].barsInfo[0].disks = ['disk0', 'disk1', 'disk2', 'disk3', 'disk4'];
+            objetoPrincipal[indexador].barsInfo[1].disks = [];
+            objetoPrincipal[indexador].barsInfo[2].disks = [];
+            objetoPrincipal[indexador].barsInfo[3].disks = [];
+            objetoPrincipal[indexador].barsInfo[4].disks = [];
+
+            switch (objetoPrincipal[indexador].diskCount) {
+                case 3: objetoPrincipal[indexador].barsInfo[0].disks.pop(); objetoPrincipal[indexador].barsInfo[0].disks.pop();
+                    disk3.style.display = "none"; disk4.style.display = "none"; break;
+
+                case 4: objetoPrincipal[indexador].barsInfo[0].disks.pop();
+                    disk4.style.display = "none"; break;
+            }
+
+            objetoPrincipal[indexador].callStack = [];
+
+            GetMovePoles(indexador);
+        }
+
+        function moveDisk(indexador) {
+            if (objetoPrincipal[indexador].callStack.length == 0) return;
+
+            objetoPrincipal[indexador].param = objetoPrincipal[indexador].callStack.shift();  //Recupera os parametros de cada movimento
+
+            var fromBar = objetoPrincipal[indexador].param[0];
+            var toBar = objetoPrincipal[indexador].param[1];
+
+            var elem = document.getElementById(objetoPrincipal[indexador].barsInfo[fromBar].disks.pop());
+
+            objetoPrincipal[indexador].moveInfo = {
+                elem: elem,
+                fromBar: fromBar,
+                toBar: toBar,
+                whichPos: "top",
+                dir: -1,
+                state: "up",
+                endPos: 60
+            }
+
+            objetoPrincipal[indexador].indexador = indexador;
+
+            objetoPrincipal[indexador].myTimer = setInterval("animateMove('" + indexador + "')", objetoPrincipal[indexador].speed); // Start animation
+        }
+
+
+
+        function animateMove(indexador) {
+            var elem = objetoPrincipal[indexador].moveInfo.elem;
+            var dir = objetoPrincipal[indexador].moveInfo.dir;
+
+            var pos = parseInt(elem[(objetoPrincipal[indexador].moveInfo.whichPos == "left") ? "offsetLeft" : "offsetTop"]);
+
+            if (((dir == 1) && (pos >= objetoPrincipal[indexador].moveInfo.endPos)) || ((dir == -1) && (pos <= objetoPrincipal[indexador].moveInfo.endPos))) {  // alert(moveInfo.state);
+                if (objetoPrincipal[indexador].moveInfo.state == "up") {
+                    objetoPrincipal[indexador].moveInfo.state = "hor";
+                    objetoPrincipal[indexador].moveInfo.whichPos = "left";
+                    objetoPrincipal[indexador].moveInfo.dir = 1;
+                    if (objetoPrincipal[indexador].moveInfo.fromBar > objetoPrincipal[indexador].moveInfo.toBar) objetoPrincipal[indexador].moveInfo.dir = -1;
+                    //alert("toBar:" + moveInfo.toBar);
+                    $("#LogtextArea").append("\n From Bar:" + objetoPrincipal[indexador].moveInfo.fromBar);
+                    $("#LogtextArea").append("\n To Bar:" + objetoPrincipal[indexador].moveInfo.toBar);
+                    console.log("fromBar:" + objetoPrincipal[indexador].moveInfo.fromBar);
+                    console.log("toBar:" + objetoPrincipal[indexador].moveInfo.toBar);
+                    var toBar = document.getElementById("bar" + objetoPrincipal[indexador].moveInfo.toBar);
+                    objetoPrincipal[indexador].moveInfo.endPos = toBar.offsetLeft - Math.floor(elem.offsetWidth / 2) + 15;
+                    return;
+                }
+                else if (objetoPrincipal[indexador].moveInfo.state == "hor") //Move para baixo
+                {
+                    objetoPrincipal[indexador].moveInfo.state = "down";
+                    objetoPrincipal[indexador].moveInfo.whichPos = "top";
+                    objetoPrincipal[indexador].moveInfo.dir = 1;
+                    objetoPrincipal[indexador].moveInfo.endPos = document.getElementById("bottombar").offsetTop - (objetoPrincipal[indexador].barsInfo[objetoPrincipal[indexador].moveInfo.toBar].disks.length + 1) * elem.offsetHeight;
+                    return;
+                }
+                else //Fim do movimento
+                {
+                    clearInterval(objetoPrincipal[indexador].myTimer); //Cancela o Timer
+                    objetoPrincipal[indexador].barsInfo[objetoPrincipal[indexador].moveInfo.toBar].disks.push(elem.id);
+                    moveDisk(indexador);
+                    return;
+                }
+            }
+
+            pos = pos + dir * objetoPrincipal[indexador].moveInc;
+            elem.style[objetoPrincipal[indexador].moveInfo.whichPos] = pos + "px";
+
+            // Move o disco para o meio da imagem
+            if (objetoPrincipal[indexador].moveInfo.state == "up") {
+                var fromBar = document.getElementById("bar" + objetoPrincipal[indexador].moveInfo.fromBar);
+                //console.log(fromBar);
+                if (elem.offsetTop < fromBar.offsetTop) {
+                    var x = elem.getElementsByClassName("insideImg")[0].offsetHeight;
+                    if (x > 0) elem.getElementsByClassName("insideImg")[0].style.height = x - objetoPrincipal[indexador].moveInc + "px";
+                }
+            }
+
+            if (objetoPrincipal[indexador].moveInfo.state == "down") {
+                var toBar = document.getElementById("bar" + objetoPrincipal[indexador].moveInfo.toBar);
+                //console.log(toBar);
+                if (elem.offsetTop > toBar.offsetTop) {
+                    var x = elem.getElementsByClassName("insideImg")[0].offsetHeight;
+                    if (x < 14) elem.getElementsByClassName("insideImg")[0].style.height = x + objetoPrincipal[indexador].moveInc + "px";
+                }
+            }
+        }
+    </script>
+
+    <table>
+        <tr>
+            <td>
+                <div class="col-md-3">
+                    <div id="container">
+                        <div id="bar0"><img src="~/images/Bar.png" /></div>
+                        <div id="bar1"><img src="~/images/Bar.png" /></div>
+                        <div id="bar2"><img src="~/images/Bar.png" /></div>
+                        <div id="bottombar"></div>
+
+                        <div class="disk" id="disk0"><img class="insideImg" style="left:94px;" src="~/images/Bar2.png" /></div>
+                        <div class="disk" id="disk1"><img class="insideImg" style="left:74px;" src="~/images/Bar2.png" /></div>
+                        <div class="disk" id="disk2"><img class="insideImg" style="left:54px;" src="~/images/Bar2.png" /></div>
+                        <div class="disk" id="disk3"><img class="insideImg" style="left:34px;" src="~/images/Bar2.png" /></div>
+                        <div class="disk" id="disk4"><img class="insideImg" style="left:14px;" src="~/images/Bar2.png" /></div>
+
+                        <button onclick="executeHanoi(0)">Iniciar</button>
+
+                        <label style="font-size: 11px">
+                            Velocidade <select id="speedSelectList">
+                                <option value="1">Rápido</option>
+                                <option value="10">Médio</option>
+                                <option value="20">Devagar</option>
+                            </select>
+                        </label>
+
+                        <label style="font-size: 11px">
+                            Número de Discos<select id="diskSelectList">
+                                <option value="5">5 discos</option>
+                                <option value="4">4 discos</option>
+                                <option value="3">3 discos</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <textarea id="LogtextArea" cols="100" rows="40"></textarea>
+            </td>
+        </tr>
+    </table>
+</div>
